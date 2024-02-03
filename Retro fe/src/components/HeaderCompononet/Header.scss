@@ -1,0 +1,34 @@
+.header {
+  max-width: 100%;
+  &_container {
+    max-width: 80%;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    h6 {
+      font-size: 200px;
+      padding-left: 15%;
+    }
+    .slider{
+        background-color: black;
+        color: white;
+        cursor: default;
+        padding: 10px;
+        a{
+            font-size: 16px;
+            font-weight: 100;
+        }
+        span{
+            padding-left: 70px;
+        }
+    }
+    .bottomPart{
+        max-width: 100vw;
+        &_container{
+            max-width: 80%;
+            
+        }
+
+    }
+  }
+}
