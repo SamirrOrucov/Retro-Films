@@ -56,7 +56,7 @@ function Header() {
                   spaceBetween: 60,
                 },
                 1024: {
-                  slidesPerView: 3,
+                  slidesPerView: 5,
                   spaceBetween: 60,
                 },
               }}

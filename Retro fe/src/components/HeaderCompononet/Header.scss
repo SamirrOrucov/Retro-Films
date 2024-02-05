@@ -50,11 +50,13 @@
         }
         .image {
           margin-top: 20px;
-          max-width: 100%;
+          max-width: 1450px;
+min-height: 800px;
+
           img {
             width: 125%;
-            height: 70%;
-            object-fit: contain;
+            height: 100%;
+            object-fit: cover;
           }
         }
       }
