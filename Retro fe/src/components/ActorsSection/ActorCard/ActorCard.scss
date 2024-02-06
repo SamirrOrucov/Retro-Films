@@ -1,0 +1,44 @@
+.actorCard{
+    width: 50%;
+    border: 1px solid black;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    
+    &_container{
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        .image{
+            width: 130px;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+        }
+        .info{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            .name{
+                font-size: 25px;
+                font-weight: 700;
+            }
+            .location{
+                p{
+                    span{
+                        font-weight: 600;
+
+                    }
+                }
+            }
+
+        }
+    }
+}

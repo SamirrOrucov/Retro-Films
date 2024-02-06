@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ActorCard from "./ActorCard/ActorCard";
-
+import "./ActorsSection.scss"
 function ActorsSection() {
+  const [dbData, setDbData] = useState([]);
+  async function fetchData() {
+    const response = await fetch("http://localhost:3003/actor/");
+    const data = await response.json();
+    setDbData(data);
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <div className="actors">
       <div className="actors_container">
@@ -11,13 +20,17 @@ function ActorsSection() {
           <div className="link">
             <p>
               <Link>
-                ALL  <i class="fa-solid fa-arrow-right"></i>
+                ALL <i class="fa-solid fa-arrow-right"></i>
               </Link>
             </p>
           </div>
         </div>
         <div className="actors_container_cards">
-            <ActorCard/>
+          {dbData
+          .slice(0,6)
+          .map((item) => (
+            <ActorCard image={item.image} name={item.name} city={item.city} />
+          ))}
         </div>
       </div>
     </div>
