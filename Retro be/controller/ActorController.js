@@ -19,8 +19,8 @@ export const getActorById = async (req, res) => {
 };
 export const postActor = async (req, res) => {
   try {
-    const { image, name, desc, city } = req.body;
-    const newActor = new ActorModel({ image, name, desc, city });
+    const { image,title, name, desc, city } = req.body;
+    const newActor = new ActorModel({ image, title,name, desc, city });
     await newActor.save();
 
     res.send("New Actor Posted!");
@@ -31,9 +31,9 @@ export const postActor = async (req, res) => {
 export const updateActor = async (req, res) => {
   try {
     const { id } = req.params;
-    const { image, name, desc, city } = req.body;
+    const { image,title, name, desc, city } = req.body;
     const updatedActor = await ActorModel.findByIdAndUpdate(id, {
-      image,
+      image,title,
       name,
       desc,
       city,

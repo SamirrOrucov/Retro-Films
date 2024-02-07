@@ -4,12 +4,16 @@ import cors from "cors";
 import "dotenv/config";
 import { filmRoute } from "./routes/FilmRouter.js";
 import { actorRoute } from "./routes/ActorRouter.js";
+import { userRouter } from "./routes/UserRouter.js";
+import { authRoute } from "./routes/AuthRouter.js";
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/film", filmRoute);
 app.use("/actor", actorRoute);
+app.use("/user", userRouter);
+app.use("/auth", authRoute);
 
 
 mongoose
