@@ -5,6 +5,7 @@ const filmSchema = new Schema({
     title: String,
     desc: String,
     director: String,
+    directorYears: String,
     directorImg:String,
     duration: String,
     date: String,

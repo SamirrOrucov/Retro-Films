@@ -6,6 +6,8 @@ import { filmRoute } from "./routes/FilmRouter.js";
 import { actorRoute } from "./routes/ActorRouter.js";
 import { userRouter } from "./routes/UserRouter.js";
 import { authRoute } from "./routes/AuthRouter.js";
+import multer from "multer";
+import { storage } from "./Middleware/multerStorage.js";
 
 const app = express();
 app.use(express.json());
@@ -14,6 +16,7 @@ app.use("/film", filmRoute);
 app.use("/actor", actorRoute);
 app.use("/user", userRouter);
 app.use("/auth", authRoute);
+app.use("/static",express.static("public"));
 
 
 mongoose

@@ -1,18 +1,24 @@
 import jwt from 'jsonwebtoken'
 
-export const authMiddleware = function (roles) {
+export const verfyAccess = function (roles) {
     return function (req, res, next) {
         try {
-            const token = req.headers.authorization
+            let token = req.headers.authorization
             if (!token) {
-                res.status(403).send("you don't have token")
-                return
+                return res.status(403).send("token is required")
+               
             }
+            if (!token.startsWith('Bearer')) {
+                return res.status(403).send("token is not valid")
+                
+            }
+            token=token.slice(7)
             const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
             if (!roles.includes(decoded.role)) {
-                res.status(403).send("you don't have access")
-                return
+               return res.status(403).send("you don't have access")
+                
             }
+            console.log(decoded);
             next()
         } catch (error) {
             res.send(error.message)

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { deleteActor, getActorById, getAllActors, postActor, updateActor } from "../controller/ActorController.js";
+// import { verfyAccess } from "../Middleware/AuthMiddleware.js";
 
 export const actorRoute=Router()
 
