@@ -1,7 +1,8 @@
 import React from 'react'
 import "./ActorCard.scss"
+import { Link } from 'react-router-dom'
 
-function ActorCard({image,name,city}) {
+function ActorCard({id,image,name,city}) {
   return (
     <div className='actorCard'>
       <div className="actorCard_container">
@@ -10,7 +11,7 @@ function ActorCard({image,name,city}) {
         </div>
         <div className="info">
           <div className="name">
-            <p>{name}</p>
+            <Link to={"/actors/"+id}><p>{name}</p></Link>
           </div>
           <div className="location">
             <p><span>City:</span>{city}</p>

@@ -1,7 +1,8 @@
 import React from "react";
 import "./FilmCard.scss"
+import { Link } from "react-router-dom";
 
-function FilmCard({ image, title, desc, director, date, duration, category }) {
+function FilmCard({ id,image, title, desc, director, date, duration, category }) {
   return (
     <div className="filmCard">
       <div className="filmCard_container">
@@ -11,7 +12,7 @@ function FilmCard({ image, title, desc, director, date, duration, category }) {
         <div className="filmCard_container_info">
           <div className="filmCard_container_info_top">
             <div className="title">
-              <p>{title}</p>
+             <Link to={"/films/"+id}> <p>{title}</p></Link>
             </div>
             <div className="desc">
               <p>{desc}</p>

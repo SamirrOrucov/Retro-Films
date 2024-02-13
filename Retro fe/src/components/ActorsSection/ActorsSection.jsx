@@ -19,7 +19,7 @@ function ActorsSection() {
           <p className="actors">Actors</p>
           <div className="link">
             <p>
-              <Link>
+              <Link to={"/actors"}>
                 ALL <i class="fa-solid fa-arrow-right"></i>
               </Link>
             </p>
@@ -29,7 +29,7 @@ function ActorsSection() {
           {dbData
           .slice(0,6)
           .map((item) => (
-            <ActorCard image={item.image} name={item.name} city={item.city} />
+            <ActorCard id={item._id} image={item.image} name={item.name} city={item.city} />
           ))}
         </div>
       </div>

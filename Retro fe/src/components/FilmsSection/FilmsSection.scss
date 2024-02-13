@@ -5,6 +5,9 @@
         margin: 0 auto;
         border-bottom: 1px solid black;
         padding: 50px 0;
+        &:last-child {
+            border-bottom: none;
+          }
         .link
         {
             display: flex;
