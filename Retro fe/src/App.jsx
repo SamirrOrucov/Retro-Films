@@ -8,6 +8,7 @@ import ActorsDetail from "./pages/ActorsDetail/ActorsDetail";
 import FilmsDetail from "./pages/FilmsDetail/FilmsDetail";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import EditProfile from "./pages/EditProfile/EditProfile";
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
             <Route path="/films/:id" element={<FilmsDetail />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/edit" element={<EditProfile />} />
+
 
             <Route path="*" element={<NoPage />} />
           </Route>

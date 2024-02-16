@@ -27,3 +27,7 @@ button {
   cursor: pointer;
   transition: 300ms;
 }
+::selection {
+  color: white;
+  background-color: black;
+}

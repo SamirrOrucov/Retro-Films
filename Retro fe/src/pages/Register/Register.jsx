@@ -1,80 +1,88 @@
-import React, { useContext } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserTokenContext } from "../../context/UserTokenContext";
 
 function Register() {
   const { addToken } = useContext(UserTokenContext);
   const navigate = useNavigate();
-  async function registerUser(values) {
-    try {
-      const response = await fetch("http://localhost:3003/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
+  const [passwordStatus, setPasswordStatus] = useState(true);
+  const [nickName, setNickName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [image, setImage] = useState("");
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+  function passwordToggle() {
+    const x = document.getElementById("myInput");
 
-      const tokenResponse = await response.json();
+    if (passwordStatus) {
+      x.type = "text";
+    } else if (passwordStatus == false) {
+      x.type = "password";
+    }
+    setPasswordStatus(!passwordStatus);
+  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("nickName", nickName);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("avatar", image);
+    const response = await fetch("http://localhost:3003/auth/register", {
+      method: "POST",
+      body: formData,
+    });
+    const tokenResponse = await response.json();
       const token = tokenResponse.token;
-      console.log(response);
-      console.log(tokenResponse);
-      console.log(token);
 
-
-
-      if (!token || typeof token !== "string") {
-        throw new Error("Invalid token received from the server");
+      if (!token || typeof token !== 'string') {
+        throw new Error('Invalid token received from the server');
       }
 
       addToken(token);
       navigate("/");
-    } catch (error) {
-      console.error("Error:", error);
-    }
   }
   return (
-   <>
-    <Formik
-      initialValues={{ email: "", nickName: "", password: "" }}
-      validationSchema={Yup.object({
-        email: Yup.string().email("Invalid email address").required("Required"),
-        nickName: Yup.string()
-          .max(15, "Must be 15 characters or less")
-          .required("Required"),
-        password: Yup.string()
-          .max(15, "Must be 15 characters or less")
-          .required("Required"),
-      })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          registerUser(values);
-          setSubmitting(false);
-        }, 400);
-      }}
-    >
-      <Form>
-        <label htmlFor="email">Email</label>
-        <Field name="email" type="email" />
-        <ErrorMessage name="email" />
+    <>
+      <div className="form">
+        <form action="" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name=""
+            id="nickName"
+            onChange={(e) => setNickName(e.target.value)}
+          />
+          <input
+            type="email"
+            name=""
+            id="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <div className="password">
+            <input
+              type="password"
+              id="myInput"
+              name=""
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <i
+              className={
+                passwordStatus ? "  fa-solid fa-eye" : "fa-solid fa-eye-slash"
+              }
+              onClick={() => passwordToggle()}
+            ></i>
+          </div>
 
-        <label htmlFor="nickName">Nickname</label>
-        <Field name="nickName" type="text" />
-        <ErrorMessage name="nickName" />
-
-        <label htmlFor="email">Password</label>
-        <Field name="password" type="text" />
-        <ErrorMessage name="password" />
-
-        <button type="submit">Submit</button>
-      </Form>
-    </Formik>
-    <input type="file" name="" id="" />
-   </>
+          <input
+            onChange={(e) => setImage(e.target.files[0])}
+            type="file"
+            accept="image/*"
+          ></input>
+          <button>Submit</button>
+        </form>
+      </div>
+    </>
   );
 }
 

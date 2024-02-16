@@ -2,11 +2,12 @@ import React, { useState, useContext } from "react";
 import "./Navbar.scss";
 import { Link, NavLink } from "react-router-dom";
 import { UserTokenContext } from "../../context/UserTokenContext";
+import UserProfile from "../../components/UserProfile/UserProfile";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { decodedToken, logout, addToken } = useContext(UserTokenContext);
-
+  const [showProfile, setShowProfile] = useState(false);
   return (
     <div className="navbar">
       <div className="navbar_container">
@@ -16,33 +17,23 @@ function Navbar() {
         <div className="links">
           <NavLink to={"/films"}>Films</NavLink>
           <NavLink to={"/actors"}>Actors</NavLink>
-          { decodedToken ? (
+
+          <div className="line"></div>
+          {decodedToken ? (
             <>
-              <p>{decodedToken.name}</p>
-              <Link onClick={() => logout()}>Log Out</Link>
+              <p
+                onClick={() => setShowProfile(!showProfile)}
+                className="settings"
+              >
+                {showProfile ? <i className="fa-solid fa-xmark"></i> : <><i class="fa-solid fa-bars"></i> Settings</>}
+              </p>
+              {showProfile ? <UserProfile /> : ""}
             </>
           ) : (
             <NavLink to={"/login"}>
               Log in <i className="fa-solid fa-user"></i>
             </NavLink>
           )}
-
-          {console.log(decodedToken)}
-          <div className="line"></div>
-          <div className="icons">
-            <Link>
-              <i className="fa-brands fa-instagram"></i>
-            </Link>
-            <Link>
-              <i className="fa-brands fa-x-twitter"></i>
-            </Link>
-            <Link>
-              <i className="fa-brands fa-youtube"></i>
-            </Link>
-            <Link>
-              <i className="fa-solid fa-rss"></i>
-            </Link>
-          </div>
         </div>
 
         <div className={isOpen ? "responsiveNav isOpen" : "responsiveNav"}>

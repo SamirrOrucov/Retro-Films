@@ -1,8 +1,20 @@
-import React from "react";
-import "./FilmCard.scss"
+import React, { useContext } from "react";
+import "./FilmCard.scss";
 import { Link } from "react-router-dom";
+import { WatchlistContext } from "../../../context/WatchlistContext";
 
-function FilmCard({ id,image, title, desc, director, date, duration, category }) {
+function FilmCard({
+  id,
+  image,
+  title,
+  desc,
+  director,
+  date,
+  duration,
+  category,
+  item,
+}) {
+  const { addWatchlist, watchlist } = useContext(WatchlistContext);
   return (
     <div className="filmCard">
       <div className="filmCard_container">
@@ -12,7 +24,18 @@ function FilmCard({ id,image, title, desc, director, date, duration, category })
         <div className="filmCard_container_info">
           <div className="filmCard_container_info_top">
             <div className="title">
-             <Link to={"/films/"+id}> <p>{title}</p></Link>
+              <Link to={"/films/" + id}>
+                {" "}
+                <p>{title}</p>
+              </Link>
+
+              {watchlist.some((x) => x._id === item._id) ? (
+                <button onClick={() => addWatchlist(item)}>
+                Added
+                </button>
+              ) : (
+                <button onClick={() => addWatchlist(item)}>  Add Watchlist</button>
+              )}
             </div>
             <div className="desc">
               <p>{desc}</p>
