@@ -51,6 +51,7 @@ function OldFilmsComponents() {
                 title={item.title}
                 desc={item.desc}
                 duration={item.duration}
+                item={item}
               />
             ))}
           </div>

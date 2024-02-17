@@ -30,11 +30,17 @@ function FilmCard({
               </Link>
 
               {watchlist.some((x) => x._id === item._id) ? (
-                <button onClick={() => addWatchlist(item)}>
-                Added
+                <button
+                  onClick={() => addWatchlist(item)}
+                  className="addedWatchlist"
+                >
+                  Added
                 </button>
               ) : (
-                <button onClick={() => addWatchlist(item)}>  Add Watchlist</button>
+                <button onClick={() => addWatchlist(item)}>
+                  {" "}
+                  Add Watchlist
+                </button>
               )}
             </div>
             <div className="desc">

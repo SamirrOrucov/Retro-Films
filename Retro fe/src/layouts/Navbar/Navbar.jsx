@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Navbar.scss";
 import { Link, NavLink } from "react-router-dom";
 import { UserTokenContext } from "../../context/UserTokenContext";
@@ -8,8 +8,23 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { decodedToken, logout, addToken } = useContext(UserTokenContext);
   const [showProfile, setShowProfile] = useState(false);
+  const [stickyNav, setStickyNav] = useState(false);
+  useEffect(() => {
+    window.addEventListener("scroll", stickNavbar);
+
+    return () => {
+      window.removeEventListener("scroll", stickNavbar);
+    };
+  }, []);
+
+  const stickNavbar = () => {
+    if (window !== undefined) {
+      let windowHeight = window.scrollY;
+      windowHeight > 100 ? setStickyNav(true) : setStickyNav(false);
+    }
+  };
   return (
-    <div className="navbar">
+    <div className={`navbar  ${stickyNav ? "fixed" : ""}`}>
       <div className="navbar_container">
         <div className="logo">
           <Link to={"/"}>AZEFILMS</Link>
@@ -25,7 +40,13 @@ function Navbar() {
                 onClick={() => setShowProfile(!showProfile)}
                 className="settings"
               >
-                {showProfile ? <i className="fa-solid fa-xmark"></i> : <><i class="fa-solid fa-bars"></i> Settings</>}
+                {showProfile ? (
+                  <i className="fa-solid fa-xmark"></i>
+                ) : (
+                  <>
+                    <i class="fa-solid fa-bars"></i> Settings
+                  </>
+                )}
               </p>
               {showProfile ? <UserProfile /> : ""}
             </>
@@ -60,6 +81,7 @@ function Navbar() {
         </div>
         <div className="hamburger" onClick={() => setIsOpen(!isOpen)}>
           <i className="fa-light fa-bars"></i>
+          
         </div>
       </div>
     </div>

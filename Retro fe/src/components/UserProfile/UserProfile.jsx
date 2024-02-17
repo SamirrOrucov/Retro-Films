@@ -4,7 +4,6 @@ import "./UserProfile.scss";
 import { UserTokenContext } from "../../context/UserTokenContext";
 function UserProfile() {
   const { decodedToken, logout, addToken } = useContext(UserTokenContext);
-  console.log(decodedToken);
   return (
     <div className="userProfile">
       <div className="userProfile_container">
@@ -16,7 +15,7 @@ function UserProfile() {
           <Link to={"/edit"}>
             <i class="fa-solid fa-user-pen"></i> Edit Profile
           </Link>
-          <Link>
+          <Link to={"/watchlist"}>
             <i class="fa-solid fa-bookmark"></i> Watchlist
           </Link>
           <Link onClick={() => logout()}>

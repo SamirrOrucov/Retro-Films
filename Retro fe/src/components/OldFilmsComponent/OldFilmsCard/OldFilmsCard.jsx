@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./OldFilmsCards.scss";
-function OldFilmsCard({ year, category, image, title, desc, duration }) {
+import { WatchlistContext } from "../../../context/WatchlistContext";
+function OldFilmsCard({ year, item, image, title, desc, duration }) {
+  const { addWatchlist, watchlist } = useContext(WatchlistContext);
+
   const { hours, minutes } = timeConvert(duration);
   function timeConvert(duration) {
     const minutes = duration % 60;
@@ -15,7 +18,18 @@ function OldFilmsCard({ year, category, image, title, desc, duration }) {
             <p>{year}</p>
           </div>
           <div className="catgory">
-            <button>{category}</button>
+          {watchlist.some((x) => x._id === item._id) ? (
+                <button
+                  onClick={() => addWatchlist(item)}
+                  className="addedWatchlist"
+                >
+                  Added
+                </button>
+              ) : (
+                <button onClick={() => addWatchlist(item)}>
+                  Add Watchlist
+                </button>
+              )}
           </div>
         </div>
         <div className="image">
