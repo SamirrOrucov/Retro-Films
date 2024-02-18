@@ -6,7 +6,7 @@ function OldFilmsComponents() {
   const [dbData, setDbData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [filmsPerPage] = useState(6);
-  const [sortBy, setSortBy] = useState(null)
+  const [category, setCategory] = useState("All");
   async function fetchData() {
     const response = await fetch("http://localhost:3003/film");
     const data = await response.json();
@@ -22,7 +22,13 @@ function OldFilmsComponents() {
   const currentFilms = dbData.slice(indexOfFirstFilm, indexOfLastFilm);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+const handleCategoryClick = (category) => {
+    setCategory(category);
+  };
+  const filteredProducts =
+    category === "All"
+      ? dbData
+      : dbData.filter((item) => item.category === category);
   return (
     <div className="oldFilms">
       <div className="oldFilms_container">
@@ -33,15 +39,14 @@ function OldFilmsComponents() {
           <div className="categorySide">
             <p>CATEGORIES</p>
             <div className="types">
-              <button>ALL</button>
-              <button onClick={()=>setSortBy({field:"category",asc:true})}>DRAMA</button>
-              <button>COMEDY</button>
-              <button>WAR</button>
+              <button onClick={() => handleCategoryClick("All")}>ALL</button>
+              <button onClick={() => handleCategoryClick("drama")}>DRAMA</button>
+              <button  onClick={() => handleCategoryClick("komediya")}>COMEDY</button>
+              <button onClick={() => handleCategoryClick("savas")}>WAR</button>
             </div>
           </div>
           <div className="cards">
-            {currentFilms
-            
+            {filteredProducts
             .map((item, index) => (
               <OldFilmsCard
                 key={index}
