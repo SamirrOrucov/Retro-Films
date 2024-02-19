@@ -7,6 +7,7 @@ function OldFilmsComponents() {
   const [currentPage, setCurrentPage] = useState(1);
   const [filmsPerPage] = useState(6);
   const [category, setCategory] = useState("All");
+
   async function fetchData() {
     const response = await fetch("http://localhost:3003/film");
     const data = await response.json();
@@ -22,13 +23,19 @@ function OldFilmsComponents() {
   const currentFilms = dbData.slice(indexOfFirstFilm, indexOfLastFilm);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-const handleCategoryClick = (category) => {
+  const handleCategoryClick = (category) => {
     setCategory(category);
+    setCurrentPage(1); // Reset to first page when category changes
   };
+
   const filteredProducts =
     category === "All"
       ? dbData
       : dbData.filter((item) => item.category === category);
+
+  // Calculate number of pages based on filtered products
+  const totalPages = Math.ceil(filteredProducts.length / filmsPerPage);
+
   return (
     <div className="oldFilms">
       <div className="oldFilms_container">
@@ -40,14 +47,13 @@ const handleCategoryClick = (category) => {
             <p>CATEGORIES</p>
             <div className="types">
               <button onClick={() => handleCategoryClick("All")}>ALL</button>
-              <button onClick={() => handleCategoryClick("drama")}>DRAMA</button>
-              <button  onClick={() => handleCategoryClick("komediya")}>COMEDY</button>
-              <button onClick={() => handleCategoryClick("savas")}>WAR</button>
+              <button onClick={() => handleCategoryClick("dram")}>DRAMA</button>
+              <button onClick={() => handleCategoryClick("komediya")}>COMEDY</button>
+              <button onClick={() => handleCategoryClick("war")}>WAR</button>
             </div>
           </div>
           <div className="cards">
-            {filteredProducts
-            .map((item, index) => (
+            {currentFilms.map((item, index) => (
               <OldFilmsCard
                 key={index}
                 year={item.date}
@@ -62,14 +68,15 @@ const handleCategoryClick = (category) => {
           </div>
           <div className="pagination">
             <div className="container">
-              {Array.from(
-                { length: Math.ceil(dbData.length / filmsPerPage) },
-                (_, i) => (
-                  <button key={i} onClick={() => paginate(i + 1)}>
-                    {i + 1}
-                  </button>
-                )
-              )}
+              {Array.from({ length: totalPages }, (_, i) => (
+                <button
+                  key={i}
+                  onClick={() => paginate(i + 1)}
+                  className={currentPage === i + 1 ? "active" : ""}
+                >
+                  {i + 1}
+                </button>
+              ))}
             </div>
           </div>
         </div>

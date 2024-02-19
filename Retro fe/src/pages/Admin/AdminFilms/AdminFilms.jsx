@@ -51,7 +51,7 @@ function AdminFilms() {
                   <img src={item.image} alt="" />
                 </td>
                 <td>{item.title}</td>
-                <td>{item.desc}</td>
+                <td>{item.desc.slice(0,50)}</td>
                 <td>{item.director}</td>
                 <td>{item.directorYears}</td>
                 <td>

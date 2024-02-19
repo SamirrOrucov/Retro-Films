@@ -12,9 +12,9 @@ function UserProfile() {
           <p className="profileName">{decodedToken.name} </p>
         </div>
         <div className="userProfile_container_down">
-          <Link to={"/edit"}>
+          {/* <Link to={"/edit"}>
             <i class="fa-solid fa-user-pen"></i> Edit Profile
-          </Link>
+          </Link> */}
           <Link to={"/watchlist"}>
             <i class="fa-solid fa-bookmark"></i> Watchlist
           </Link>

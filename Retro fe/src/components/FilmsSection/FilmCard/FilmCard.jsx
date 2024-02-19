@@ -44,7 +44,7 @@ function FilmCard({
               )}
             </div>
             <div className="desc">
-              <p>{desc}</p>
+              <p>{desc.slice(0,450)}..</p>
             </div>
           </div>
           <div className="filmCard_container_info_bottom">

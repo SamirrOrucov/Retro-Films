@@ -15,7 +15,6 @@ function UserTokenContextProvider({ children }) {
       setDecodedToken(decoded);
     }
   }, [tokenn]);
-
   function addToken(value) {
     setToken(value);
     Cookies.set("token", value, { expires: 7, secure: true });

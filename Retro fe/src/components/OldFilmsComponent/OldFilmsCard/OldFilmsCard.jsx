@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import "./OldFilmsCards.scss";
 import { WatchlistContext } from "../../../context/WatchlistContext";
+import { Link } from "react-router-dom";
 function OldFilmsCard({ year, item, image, title, desc, duration }) {
   const { addWatchlist, watchlist } = useContext(WatchlistContext);
 
@@ -37,9 +38,11 @@ function OldFilmsCard({ year, item, image, title, desc, duration }) {
         </div>
         <div className="middle">
           <div className="title">
+          <Link to={"/films/" + item._id}>
             <p>{title}</p>
+            </Link>
           </div>
-          <div className="desc">{desc}</div>
+          <div className="desc">{desc.slice(0,250)}..</div>
         </div>
         <div className="duration">
           <p>

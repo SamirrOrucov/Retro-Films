@@ -55,7 +55,7 @@ function FilmsDetailComponent() {
           <div className="left">
             <div className="director">
               <img
-                src="https://s3-alpha-sig.figma.com/img/58cd/5642/6ac18649dca52965c00a427aef038cc2?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FvJ-O1YqQlHAMbxHDIfeM7JHUE05bJVQ53S~yfaad9FY-UIl1rVpIifJ3BYe109M698yDDEwbt~NX9xXHLdhULZpxZVmnfw4fOXBwflLACDaUHxrvkXPz1PxPFfdX6maSYg-O-7xOPUNDelTKKs69RFd3kFx68C3Duk6EgElNQ8Xi~BQoM~Y0oO~YXVQ8qXEafLzUoNwAqtrpl284sOoYfJ-Z97KZyfPa3dm6XaWRGznx31s9ThGnyVWSrKPw5zgzYJRdy8vG0CWe5RPxuZsDCvf~hABd90LOAAybkZarLoDS8JBA3Ful1qU8jCfv3fnQXT3u15kq7CgqwCJwWSgIw__"
+                src={dbData.directorImg}
                 alt=""
               />
               <p>{dbData.director}</p>

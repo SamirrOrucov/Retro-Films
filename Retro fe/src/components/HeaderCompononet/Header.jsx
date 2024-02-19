@@ -22,9 +22,9 @@ function Header() {
     fetchData();
   }, []);
 
-  const firstFilmTitle = dbData.length > 0 ? dbData[13].title : "";
-  const firstFilmimage = dbData.length > 0 ? dbData[13].image : "";
-  const firstFilmDesc = dbData.length > 0 ? dbData[13].desc : "";
+  const firstFilmTitle = dbData.length > 0 ? dbData[1].title : "";
+  const firstFilmimage = dbData.length > 0 ? dbData[1].image : "";
+  const firstFilmDesc = dbData.length > 0 ? dbData[1].desc : "";
 
   return (
     <div className="header">

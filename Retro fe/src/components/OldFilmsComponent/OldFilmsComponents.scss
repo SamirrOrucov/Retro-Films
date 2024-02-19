@@ -1,10 +1,10 @@
 .oldFilms{
     max-width: 100vw;
     &_container{
-        max-width: 80%;
+        max-width: 90%;
         margin: 0 auto;
         &_top{
-            font-size: 140px;
+            font-size: 137px;
             line-height: 239px;
             letter-spacing: 8px;
             overflow: hidden;
@@ -42,7 +42,7 @@
             .cards{
                 display: flex;
                 flex-wrap: wrap;
-                gap: 40px;
+                gap: 50px;
             }
             .pagination{
                 max-width: 100%;
