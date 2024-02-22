@@ -34,14 +34,14 @@ export const createUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { image, title, name, desc, city } = req.body;
+    const { nickName, password, role } = req.body;
     const updatedUser = await UserModel.findByIdAndUpdate(id, {
-      image,
-      title,
-      name,
-      desc,
-      city,
+      image: req.static ? "http://localhost:3003/static/" + req.static : null,
+      nickName,
+      password,
+      role,
     });
+    
     res.send("User Updated!");
   } catch (error) {
     res.send(error.message);
@@ -55,5 +55,44 @@ export const deleteUser = async (req, res) => {
     res.send("Selected User deleted!");
   } catch (error) {
     res.send(error.message);
+  }
+};
+
+export const addToWatchlist = async (req, res) => {
+  try {
+    const { userId, filmId } = req.body; 
+    const user = await UserModel.findById(userId);
+    console.log(user);
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+    user.wishlist.push(filmId);
+    await user.save();
+
+    res.send("Film added to watchlist successfully");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};export const deleteFromWatchlist = async (req, res) => {
+  try {
+    const { userId, filmId } = req.body; 
+    const user = await UserModel.findById(userId);
+    
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    const index = user.wishlist.indexOf(filmId);
+    
+    if (index === -1) {
+      return res.status(404).send("Film not found in watchlist");
+    }
+
+    user.wishlist.splice(index, 1);
+    await user.save();
+
+    res.send("Film deleted from watchlist successfully");
+  } catch (error) {
+    res.status(500).send(error.message);
   }
 };
