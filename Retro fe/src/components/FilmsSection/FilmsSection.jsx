@@ -22,7 +22,7 @@ function FilmsSection() {
       
         {
             dbData.slice(0,5).map((item)=>
-            <FilmCard
+            <FilmCard key={item._id}
             id={item._id}
           image={item.image}
           title={item.title}
@@ -38,7 +38,7 @@ function FilmsSection() {
         <div className="link">
           <p>
             
-            <Link to={"/films"}>ALL Films <i class="fa-solid fa-arrow-right"></i></Link>
+            <Link to={"/films"}>ALL Films <i className="fa-solid fa-arrow-right"></i></Link>
             
             </p>
 

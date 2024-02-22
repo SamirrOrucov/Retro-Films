@@ -69,7 +69,7 @@ function Header() {
             >
               {dbData.map((item, index) => (
                 <SwiperSlide key={index}>
-                  <Link to={`/${item.id}`}>
+                  <Link to={"/films/"+item._id}>
                     {item.title} <span>-</span>
                   </Link>
                 </SwiperSlide>
@@ -85,7 +85,7 @@ function Header() {
               </div>
               <div className="desc">
                 <p>{firstFilmDesc}</p>
-              </div>
+              </div>  
              </div>
               <div className="image">
                 <img src={firstFilmimage} alt="" /> 

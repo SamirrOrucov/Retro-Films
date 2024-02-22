@@ -72,16 +72,16 @@ function FilmsDetailComponent() {
         </div>
         <div className="feedbackSection">
           <p className="feedback">
-            FEEDBACK <i class="fa-solid fa-arrow-right"></i>
+            FEEDBACK <i className ="fa-solid fa-arrow-right"></i>
           </p>
           <div className="rating">
             <p>What do you think of the film?</p>
             <div className="stars">
-              <i  class="fa-solid fa-star"></i>
-              <i  class="fa-solid fa-star"></i>
-              <i  class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star-half-stroke"></i>
-              <i class="fa-regular fa-star"></i>
+              <i  className="fa-solid fa-star"></i>
+              <i  className="fa-solid fa-star"></i>
+              <i  className="fa-solid fa-star"></i>
+              <i className="fa-regular fa-star-half-stroke"></i>
+              <i className="fa-regular fa-star"></i>
             </div>
           </div>
           <div className="commentSection">

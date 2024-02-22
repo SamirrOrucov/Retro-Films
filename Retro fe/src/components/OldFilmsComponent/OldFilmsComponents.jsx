@@ -33,7 +33,6 @@ function OldFilmsComponents() {
       ? dbData
       : dbData.filter((item) => item.category === category);
 
-  // Calculate number of pages based on filtered products
   const totalPages = Math.ceil(filteredProducts.length / filmsPerPage);
 
   return (

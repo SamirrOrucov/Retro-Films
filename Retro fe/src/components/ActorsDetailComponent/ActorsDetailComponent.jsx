@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./ActorsDetailComponent.scss"
+import "./ActorsDetailComponent.scss";
 function ActorsDetailComponent() {
   const { id } = useParams();
   const [dbData, setDbData] = useState([]);

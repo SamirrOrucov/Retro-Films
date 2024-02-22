@@ -5,9 +5,9 @@ import { UserTokenContext } from "../../context/UserTokenContext";
 import UserProfile from "../../components/UserProfile/UserProfile";
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
   const { decodedToken, logout, addToken } = useContext(UserTokenContext);
   const [showProfile, setShowProfile] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [stickyNav, setStickyNav] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", stickNavbar);
@@ -16,7 +16,6 @@ function Navbar() {
       window.removeEventListener("scroll", stickNavbar);
     };
   }, []);
-
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
@@ -44,7 +43,7 @@ function Navbar() {
                   <i className="fa-solid fa-xmark"></i>
                 ) : (
                   <>
-                    <i class="fa-solid fa-bars"></i> Settings
+                    <i className="fa-solid fa-bars"></i> Settings
                   </>
                 )}
               </p>
@@ -81,7 +80,6 @@ function Navbar() {
         </div>
         <div className="hamburger" onClick={() => setIsOpen(!isOpen)}>
           <i className="fa-light fa-bars"></i>
-          
         </div>
       </div>
     </div>

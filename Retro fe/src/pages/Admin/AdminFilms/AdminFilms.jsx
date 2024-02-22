@@ -14,7 +14,6 @@ function AdminFilms() {
   useEffect(() => {
     fetchFilms();
   }, []);
-  console.log(filmData);
 
   async function handleDelete(id) {
     await fetch("http://localhost:3003/film/" + id, { method: "DELETE" });
@@ -26,7 +25,7 @@ function AdminFilms() {
       <div className="adminFilms_container">
         <Link to={"/admin/films/add"}>
           <button className="addButton">
-            <i class="fa-solid fa-plus"></i> Add Film
+            <i className="fa-solid fa-plus"></i> Add Film
           </button>
         </Link>
         <table>
@@ -51,7 +50,7 @@ function AdminFilms() {
                   <img src={item.image} alt="" />
                 </td>
                 <td>{item.title}</td>
-                <td>{item.desc.slice(0,50)}</td>
+                <td>{item.desc.slice(0,150)}..  </td>
                 <td>{item.director}</td>
                 <td>{item.directorYears}</td>
                 <td>

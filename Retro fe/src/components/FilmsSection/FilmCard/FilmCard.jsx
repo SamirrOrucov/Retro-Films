@@ -14,7 +14,7 @@ function FilmCard({
   category,
   item,
 }) {
-  const { addWatchlist, watchlist } = useContext(WatchlistContext);
+  const { removeFromWatchlist,addToWatchlist, watchlist } = useContext(WatchlistContext);
   return (
     <div className="filmCard">
       <div className="filmCard_container">
@@ -31,14 +31,13 @@ function FilmCard({
 
               {watchlist.some((x) => x._id === item._id) ? (
                 <button
-                  onClick={() => addWatchlist(item)}
+                  onClick={() => removeFromWatchlist(item)}
                   className="addedWatchlist"
                 >
                   Added
                 </button>
               ) : (
-                <button onClick={() => addWatchlist(item)}>
-                  {" "}
+                <button onClick={() => addToWatchlist(item)}>
                   Add Watchlist
                 </button>
               )}

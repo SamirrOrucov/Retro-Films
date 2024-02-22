@@ -23,7 +23,7 @@ function AdminActors() {
     <div className="adminFilms_container">
       <Link to={"/admin/actors/add"}>
         <button className="addButton">
-          <i class="fa-solid fa-plus"></i> Add Actor 
+          <i className="fa-solid fa-plus"></i> Add Actor 
         </button>
       </Link>
       <table>

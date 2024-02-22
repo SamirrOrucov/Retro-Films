@@ -38,18 +38,18 @@ function App() {
           <Route path="/watchlist" element={<Watchlist />} />
           <Route path="*" element={<NoPage />} />
         </Route>
-        {/* <Route element={<AdminRoute></AdminRoute>}> */}
-        <Route path="/admin" element={<AdminMainLayout />}>
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/actors" element={<AdminActors />} />
-          <Route path="/admin/actors/add" element={<AddActors />} />
-          <Route path="/admin/actors/edit/:id" element={<EditActors />} />
-          <Route path="/admin/users" element={<AdminUsers />} />
-          <Route path="/admin/films" element={<AdminFilms />} />
-          <Route path="/admin/films/add" element={<AddFilm />} />
-          <Route path="/admin/films/edit/:id" element={<EditFilm />} />
+        <Route element={<AdminRoute roles={["admin"]}></AdminRoute>}>
+          <Route path="/admin" element={<AdminMainLayout />}>
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/actors" element={<AdminActors />} />
+            <Route path="/admin/actors/add" element={<AddActors />} />
+            <Route path="/admin/actors/edit/:id" element={<EditActors />} />
+            <Route path="/admin/users" element={<AdminUsers />} />
+            <Route path="/admin/films" element={<AdminFilms />} />
+            <Route path="/admin/films/add" element={<AddFilm />} />
+            <Route path="/admin/films/edit/:id" element={<EditFilm />} />
+          </Route>
         </Route>
-        {/* </Route> */}
       </Routes>
     </BrowserRouter>
   );

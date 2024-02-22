@@ -7,17 +7,17 @@ function Footer() {
       <div className="footer_container">
         <div className="input"><input type="text" placeholder='Email' /> <button>Abunə Ol</button></div>
           <div className="social">
-          <i class="fa-brands fa-square-facebook"></i>
-          <i class="fa-brands fa-tiktok"></i>
-          <i class="fa-brands fa-instagram"></i>
-          <i class="fa-brands fa-youtube"></i>
-          <i class="fa-brands fa-x-twitter"></i>
+          <i className="fa-brands fa-square-facebook"></i>
+          <i className="fa-brands fa-tiktok"></i>
+          <i className="fa-brands fa-instagram"></i>
+          <i className="fa-brands fa-youtube"></i>
+          <i className="fa-brands fa-x-twitter"></i>
           
           </div>
           <div className="pageLinks">
-            <NavLink to={"/films"}>Retro Films <i class="fa-solid fa-arrow-up-right-from-square"></i></NavLink>
-            <NavLink to={"/musics"}>Film Musics <i class="fa-solid fa-arrow-up-right-from-square"></i></NavLink>
-            <NavLink to={"/actors"}>Actors <i class="fa-solid fa-arrow-up-right-from-square"></i> </NavLink>
+            <NavLink to={"/films"}>Retro Films <i className="fa-solid fa-arrow-up-right-from-square"></i></NavLink>
+            <NavLink to={"/musics"}>Film Musics <i className="fa-solid fa-arrow-up-right-from-square"></i></NavLink>
+            <NavLink to={"/actors"}>Actors <i className="fa-solid fa-arrow-up-right-from-square"></i> </NavLink>
 
           </div>
           <p>Mədəniyyət Nazirliyi@2024</p>

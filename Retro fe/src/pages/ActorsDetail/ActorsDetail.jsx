@@ -8,7 +8,7 @@ function ActorsDetail() {
       <div className="actorsDetail_container">
         <div className="actorsDetail_container_top">
           <Link to={"/actors"}>
-            <i class="fa-solid fa-arrow-left"></i> Go Back
+            <i className="fa-solid fa-arrow-left"></i> Go Back
           </Link>
           <p>ACTORS</p>
         </div>
