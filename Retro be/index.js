@@ -7,7 +7,6 @@ import { actorRoute } from "./routes/ActorRouter.js";
 import { userRouter } from "./routes/UserRouter.js";
 import { authRoute } from "./routes/AuthRouter.js";
 import { commentRoute } from "./routes/CommentRouter.js";
-import { ratingRoute } from "./routes/RatingRouter.js";
 
 const app = express();
 app.use(express.json());
@@ -17,10 +16,8 @@ app.use("/actor", actorRoute);
 app.use("/user", userRouter);
 app.use("/auth", authRoute);
 app.use("/comment", commentRoute);
-app.use("/rating", ratingRoute);
 
-app.use("/static",express.static("public"));
-
+app.use("/static", express.static("public"));
 
 mongoose
   .connect(process.env.DB_KEY)
