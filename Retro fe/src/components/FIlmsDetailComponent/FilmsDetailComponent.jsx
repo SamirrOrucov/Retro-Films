@@ -1,9 +1,50 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./FilmsDetailComponent.scss";
+import { FaStar } from "react-icons/fa";
+import { UserTokenContext } from "../../context/UserTokenContext";
+
 function FilmsDetailComponent() {
-  const [dbData, setDbData] = useState([]);
   const { id } = useParams();
+  const [dbData, setDbData] = useState([]);
+  const [rating, setRating] = useState(null);
+  const [hover, setHover] = useState(null);
+  const [message, setMessage] = useState("");
+  const { decodedToken } = useContext(UserTokenContext);
+  const [filmComments, setfilmComments] = useState([]);
+  async function postComment() {
+    try {
+      const response = await fetch("http://localhost:3003/comment/", {
+        method: "POST",
+        body: JSON.stringify({
+          userId: decodedToken.userId,
+          filmId: id,
+          content: message,
+          rating: rating,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      await fetchComments();
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+  async function fetchComments(e) {
+    try {
+      const response = await fetch(
+        "http://localhost:3003/film/filmWithComment/" + id
+      );
+      const data = await response.json();
+      setfilmComments(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+  useEffect(() => {
+    fetchComments();
+  }, []);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -25,7 +66,7 @@ function FilmsDetailComponent() {
               <h5>{dbData.title}</h5>
             </div>
             <div className="desc">
-              <p>{dbData.desc}</p>
+              <p>{dbData.desc?.slice(0, 290)}..</p>
             </div>
           </div>
           <div className="top_down">
@@ -54,10 +95,7 @@ function FilmsDetailComponent() {
         <div className="allDetail">
           <div className="left">
             <div className="director">
-              <img
-                src={dbData.directorImg}
-                alt=""
-              />
+              <img src={dbData.directorImg} alt="" />
               <p>{dbData.director}</p>
             </div>
             <div className="line"></div>
@@ -72,25 +110,59 @@ function FilmsDetailComponent() {
         </div>
         <div className="feedbackSection">
           <p className="feedback">
-            FEEDBACK <i className ="fa-solid fa-arrow-right"></i>
+            FEEDBACK <i className="fa-solid fa-arrow-right"></i>
           </p>
           <div className="rating">
             <p>What do you think of the film?</p>
             <div className="stars">
-              <i  className="fa-solid fa-star"></i>
-              <i  className="fa-solid fa-star"></i>
-              <i  className="fa-solid fa-star"></i>
-              <i className="fa-regular fa-star-half-stroke"></i>
-              <i className="fa-regular fa-star"></i>
+              {[...Array(5)].map((star, i) => {
+                const ratingValue = i + 1;
+                return (
+                  <label key={i}>
+                    <input
+                      type="radio"
+                      name="rating"
+                      id=""
+                      onClick={() => setRating(ratingValue)}
+                      value={ratingValue}
+                    />
+                    <FaStar
+                      className="str"
+                      color={
+                        ratingValue <= (hover || rating) ? "ffc107" : "e4e5e9"
+                      }
+                      onMouseEnter={() => setHover(ratingValue)}
+                      onMouseLeave={() => setHover(null)}
+                    />
+                  </label>
+                );
+              })}
             </div>
           </div>
           <div className="commentSection">
             <p>Do you have any thoughts you’d like to share?</p>
-            <input type="text" name="" id="" />
-            <button>SUBMIT</button>
+            <input
+              type="text"
+              name=""
+              id=""
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <button onClick={() => postComment()}>SUBMIT</button>
+          </div>
+          <div className="publishedComments">
+            {filmComments
+              .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort comments by createdAt in descending order
+              .map((item) => (
+                <div className="userComment" key={item._id}>
+                  <div className="userSide">
+                    <img src={item.userId.image} alt="" />
+                    <p className="userName">{item.userId.nickName}</p>
+                  </div>
+                  <p className="comment">{item.content}</p>
+                </div>
+              ))}
           </div>
         </div>
-        
       </div>
     </div>
   );

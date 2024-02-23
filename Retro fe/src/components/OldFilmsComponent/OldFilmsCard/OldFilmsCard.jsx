@@ -3,7 +3,9 @@ import "./OldFilmsCards.scss";
 import { WatchlistContext } from "../../../context/WatchlistContext";
 import { Link } from "react-router-dom";
 function OldFilmsCard({ year, item, image, title, desc, duration }) {
-  const { addWatchlist, watchlist } = useContext(WatchlistContext);
+  const { addToWatchlist, watchlist ,removeFromWatchlist} = useContext(WatchlistContext);
+  console.log("oldfilmm card--");
+  console.log(watchlist);
 
   const { hours, minutes } = timeConvert(duration);
   function timeConvert(duration) {
@@ -19,15 +21,15 @@ function OldFilmsCard({ year, item, image, title, desc, duration }) {
             <p>{year}</p>
           </div>
           <div className="catgory">
-          {watchlist.some((x) => x._id === item._id) ? (
+          {watchlist.some((x) => x === item._id) ? (
                 <button
-                  onClick={() => addWatchlist(item)}
+                  onClick={() => removeFromWatchlist(item)}
                   className="addedWatchlist"
                 >
                   Added
                 </button>
               ) : (
-                <button onClick={() => addWatchlist(item)}>
+                <button onClick={() => addToWatchlist(item)}>
                   Add Watchlist
                 </button>
               )}

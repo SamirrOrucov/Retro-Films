@@ -21,6 +21,8 @@ import EditFilm from "./pages/Admin/AdminFilms/EditFilm/EditFilm";
 import AdminRoute from "./routes/AdminRoute";
 import AddActors from "./pages/Admin/AdminActors/AddActors/AddActors";
 import EditActors from "./pages/Admin/AdminActors/EditActors/EditActors";
+import AdminComments from "./pages/Admin/AdminComments/AdminComments";
+import AdminCommentsDetail from "./pages/Admin/AdminComments/AdminCommentsDetail/AdminCommentsDetail";
 // import AdminRoute from "./routes/AdminRoute/AdminRoute"; // Import AdminRoute
 
 function App() {
@@ -48,6 +50,10 @@ function App() {
             <Route path="/admin/films" element={<AdminFilms />} />
             <Route path="/admin/films/add" element={<AddFilm />} />
             <Route path="/admin/films/edit/:id" element={<EditFilm />} />
+            <Route path="/admin/comments/" element={<AdminComments />} />
+            <Route path="/admin/comments/detail/:id" element={<AdminCommentsDetail />} />
+
+
           </Route>
         </Route>
       </Routes>

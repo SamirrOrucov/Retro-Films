@@ -10,7 +10,7 @@ function WatchlistProvider({ children }) {
 
   async function addToWatchlist(item) {
     try {
-      const index = watchlist.findIndex((x) => x._id === item._id);
+      const index = watchlist.findIndex((x) => x === item._id);
       if (index === -1) {
         const response = await fetch(
           `http://localhost:3003/user/${decodedToken.userId}/watchlist`,
@@ -28,7 +28,7 @@ function WatchlistProvider({ children }) {
         );
 
         if (response.ok) {
-          setWatchlist([...watchlist, item]);
+          setWatchlist([...watchlist, item._id]);
         } else {
           console.error(
             "Failed to add item to watchlist:",
@@ -59,7 +59,7 @@ function WatchlistProvider({ children }) {
       );
 
       if (response.ok) {
-        setWatchlist(watchlist.filter((x) => x._id !== item._id));
+        setWatchlist(watchlist.filter((x) => x !== item._id));
       } else {
         console.error(
           "Failed to remove item from watchlist:",

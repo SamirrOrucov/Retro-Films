@@ -6,7 +6,6 @@ function Watchlist() {
   const { watchlist, removeFromWatchlist } = useContext(WatchlistContext);
   const [filmData, setFilmData] = useState([]);
 
-
   async function fetchFilm() {
     try {
       const filmPromises = watchlist.map(async (filmId) => {
@@ -15,21 +14,23 @@ function Watchlist() {
           const responseData = await response.json();
           return responseData;
         } else {
-          console.error(`Failed to fetch film with ID ${filmId}: ${response.statusText}`);
+          console.error(
+            `Failed to fetch film with ID ${filmId}: ${response.statusText}`
+          );
           return null;
         }
       });
-  
+
       const filmDataArray = await Promise.all(filmPromises);
-      setFilmData(filmDataArray.filter(film => film !== null));
+      setFilmData(filmDataArray.filter((film) => film !== null));
     } catch (error) {
       console.error("Error fetching film data:", error);
     }
   }
-  
+
   useEffect(() => {
     fetchFilm();
-  }, []);
+  }, [watchlist]);
 
   return (
     <div className="watchlist">

@@ -15,6 +15,8 @@ function FilmCard({
   item,
 }) {
   const { removeFromWatchlist,addToWatchlist, watchlist } = useContext(WatchlistContext);
+  console.log("filmm card--");
+  console.log(watchlist);
   return (
     <div className="filmCard">
       <div className="filmCard_container">
@@ -29,7 +31,7 @@ function FilmCard({
                 <p>{title}</p>
               </Link>
 
-              {watchlist.some((x) => x._id === item._id) ? (
+              {watchlist.some((x) => x === item._id) ? (
                 <button
                   onClick={() => removeFromWatchlist(item)}
                   className="addedWatchlist"

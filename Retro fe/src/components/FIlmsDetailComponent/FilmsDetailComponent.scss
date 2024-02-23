@@ -122,10 +122,14 @@
         .stars {
           display: flex;
           gap: 5px;
-          i {
+          .str {
             font-size: 28px;
-            color: orange;
+            cursor: pointer;
+            transition: 300ms;
           }
+        }
+        input[type="radio"] {
+          display: none;
         }
       }
       .commentSection {
@@ -138,7 +142,7 @@
           border: 1px solid lightgray;
           outline: none;
           resize: horizontal;
-          font-family: Georgia, 'Times New Roman', Times, serif ;
+          font-family: Georgia, "Times New Roman", Times, serif;
         }
         button {
           width: 100px;
@@ -146,9 +150,43 @@
           border-radius: 12px;
           background-color: inherit;
           border: 1px solid black;
-          &:hover{
+          &:hover {
             background-color: black;
             color: white;
+          }
+        }
+      }
+      .publishedComments {
+        width: 600px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        .userComment {
+          display: flex;
+          align-items: center;
+          padding: 10px 0;
+          border: 1px solid lightgray;
+          border-radius: 12px;
+          background-color: rgb(242, 240, 240);
+          .userSide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+              width: 50px;
+              height: 50px;
+            }
+            .userName {
+              font-family: Cambria, Cochin, Georgia, Times, "Times New Roman",
+                serif;
+              font-size: 18px;
+            }
+          }
+          .comment {
+            padding-left: 30px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 14px;
+            color: gray;
           }
         }
       }

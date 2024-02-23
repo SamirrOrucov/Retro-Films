@@ -25,7 +25,7 @@ function OldFilmsComponents() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const handleCategoryClick = (category) => {
     setCategory(category);
-    setCurrentPage(1); // Reset to first page when category changes
+    setCurrentPage(1); 
   };
 
   const filteredProducts =
@@ -52,7 +52,7 @@ function OldFilmsComponents() {
             </div>
           </div>
           <div className="cards">
-            {currentFilms.map((item, index) => (
+            {filteredProducts.map((item, index) => (
               <OldFilmsCard
                 key={index}
                 year={item.date}
