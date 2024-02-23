@@ -3,6 +3,7 @@ import {
   deleteFilm,
   getAllFilms,
   getFilmById,
+  getFilmWithComments,
   postFilm,
   updateFilm,
 } from "../controller/FilmController.js";
@@ -12,6 +13,8 @@ export const filmRoute = Router();
 
 filmRoute.get("/", getAllFilms);
 filmRoute.get("/:id", getFilmById);
+filmRoute.get("/filmWithComment/:id", getFilmWithComments);
+
 
 filmRoute.post("/",  postFilm);
 

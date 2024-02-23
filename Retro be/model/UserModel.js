@@ -7,7 +7,7 @@ const userSchema = new Schema({
     password: String,
     role: { type: String, default: "user" },
     wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Film' }]
-  });
+  }); 
 
   export const UserModel = mongoose.model("UserModel", userSchema);
   

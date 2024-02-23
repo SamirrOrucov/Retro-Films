@@ -1,3 +1,4 @@
+import { CommentModel } from "../model/CommentModel.js";
 import { FilmModel } from "../model/FilmModel.js";
 
 export const getAllFilms = async (req, res) => {
@@ -51,13 +52,25 @@ export const postFilm = async (req, res) => {
 export const updateFilm = async (req, res) => {
   try {
     const { id } = req.params;
-    const { image, title, desc, director,directorYears,directorImg, duration, date, category } = req.body;
+    const {
+      image,
+      title,
+      desc,
+      director,
+      directorYears,
+      directorImg,
+      duration,
+      date,
+      category,
+    } = req.body;
+
     const updatedFilm = await FilmModel.findByIdAndUpdate(id, {
       image,
       title,
       desc,
       director,
-      directorYears,directorImg,
+      directorYears,
+      directorImg,
       duration,
       date,
       category,
@@ -75,5 +88,22 @@ export const deleteFilm = async (req, res) => {
     res.send("Selected film deleted!");
   } catch (error) {
     res.send(error.message);
+  }
+};
+
+export const getFilmWithComments = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const film = await CommentModel.find({ filmId: id }).populate(
+      "userId",
+      "-password"
+    );
+    if (!film) {
+      return res.status(404).send("Film not found");
+    }
+
+    res.send(film);
+  } catch (error) {
+    res.status(500).send(error.message);
   }
 };

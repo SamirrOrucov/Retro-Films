@@ -65,9 +65,7 @@ export const userRegister = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-// Import necessary libraries and models
 
-// Function to refresh access token using refresh token
 export const refreshToken = async (req, res) => {
   try {
     const { refreshToken } = req.body;
