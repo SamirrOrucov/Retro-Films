@@ -2,14 +2,19 @@ import React, { useContext, useEffect, useState } from "react";
 import { WatchlistContext } from "../../context/WatchlistContext";
 import "./Watchlist.scss";
 import { Link } from "react-router-dom";
+
 function Watchlist() {
   const { watchlist, removeFromWatchlist } = useContext(WatchlistContext);
   const [filmData, setFilmData] = useState([]);
-
+  // const texts = await Promise.all(urls.map(async url => {
+  //   const resp = await fetch(url);
+  //   return resp.text();
+  // }));
   async function fetchFilm() {
     try {
       const filmPromises = watchlist.map(async (filmId) => {
         const response = await fetch(`http://localhost:3003/film/${filmId}`);
+
         if (response.ok) {
           const responseData = await response.json();
           return responseData;
@@ -20,8 +25,9 @@ function Watchlist() {
           return null;
         }
       });
-
+      console.log(filmPromises);
       const filmDataArray = await Promise.all(filmPromises);
+      console.log(filmPromises);
       setFilmData(filmDataArray.filter((film) => film !== null));
     } catch (error) {
       console.error("Error fetching film data:", error);
@@ -48,7 +54,7 @@ function Watchlist() {
                       Added
                     </button>
                   </div>
-                  <div className="catgory">
+                  <div className="category">
                     <button>{item.category}</button>
                   </div>
                 </div>
@@ -58,7 +64,6 @@ function Watchlist() {
                 <div className="middle">
                   <div className="title">
                     <Link to={"/films/" + item._id}>
-                      {" "}
                       <p>{item.title}</p>
                     </Link>
                   </div>

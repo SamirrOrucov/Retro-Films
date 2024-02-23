@@ -84,7 +84,7 @@ function Header() {
                 <h5>{firstFilmTitle}</h5>
               </div>
               <div className="desc">
-                <p>{firstFilmDesc}</p>
+                <p>{firstFilmDesc?.slice(0,490)}..</p>
               </div>  
              </div>
               <div className="image">

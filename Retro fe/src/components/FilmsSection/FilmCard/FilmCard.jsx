@@ -15,8 +15,7 @@ function FilmCard({
   item,
 }) {
   const { removeFromWatchlist,addToWatchlist, watchlist } = useContext(WatchlistContext);
-  console.log("filmm card--");
-  console.log(watchlist);
+
   return (
     <div className="filmCard">
       <div className="filmCard_container">

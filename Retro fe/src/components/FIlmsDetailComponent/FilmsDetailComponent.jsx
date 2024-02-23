@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import "./FilmsDetailComponent.scss";
 import { FaStar } from "react-icons/fa";
 import { UserTokenContext } from "../../context/UserTokenContext";
@@ -10,11 +10,13 @@ function FilmsDetailComponent() {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   const [message, setMessage] = useState("");
-  const { decodedToken } = useContext(UserTokenContext);
+  const { decodedToken,tokenn } = useContext(UserTokenContext);
   const [filmComments, setfilmComments] = useState([]);
+  const navigate =useNavigate()
   async function postComment() {
     try {
-      const response = await fetch("http://localhost:3003/comment/", {
+      if (decodedToken) {
+        const response = await fetch("http://localhost:3003/comment/", {
         method: "POST",
         body: JSON.stringify({
           userId: decodedToken.userId,
@@ -27,7 +29,13 @@ function FilmsDetailComponent() {
         },
       });
       await fetchComments();
+   
+        
+      }else{
+        navigate("/login")
+      }
     } catch (error) {
+     
       console.error("Error fetching data:", error);
     }
   }
@@ -151,7 +159,6 @@ function FilmsDetailComponent() {
           </div>
           <div className="publishedComments">
             {filmComments
-              .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort comments by createdAt in descending order
               .map((item) => (
                 <div className="userComment" key={item._id}>
                   <div className="userSide">

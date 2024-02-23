@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ActorCard from "./ActorCard/ActorCard";
-import "./ActorsSection.scss"
+import "./ActorsSection.scss";
 function ActorsSection() {
   const [dbData, setDbData] = useState([]);
   async function fetchData() {
@@ -26,10 +26,14 @@ function ActorsSection() {
           </div>
         </div>
         <div className="actors_container_cards">
-          {dbData
-          .slice(0,6)
-          .map((item) => (
-            <ActorCard key={item._id} id={item._id} image={item.image} name={item.name} city={item.city} />
+          {dbData.slice(0, 6).map((item) => (
+            <ActorCard
+              key={item._id}
+              id={item._id}
+              image={item.image}
+              name={item.name}
+              city={item.city}
+            />
           ))}
         </div>
       </div>

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../AdminComments.scss";
 
-function AdminCommentsDetail({ onFetchCommentsLength }) {
+function AdminCommentsDetail() {
   const { id } = useParams();
   const [filmComments, setfilmComments] = useState([]);
+
   async function fetchComments(e) {
     try {
       const response = await fetch(
@@ -19,13 +20,10 @@ function AdminCommentsDetail({ onFetchCommentsLength }) {
   useEffect(() => {
     fetchComments();
   }, []);
-  async function handleDelete() {
-    await fetch("http://localhost:3003/comment/" + id, {
+  async function handleDelete(commentId) {
+    await fetch("http://localhost:3003/comment/"+commentId , {
       method: "DELETE",
-      body: JSON.stringify({
-        userId: "aaa",
-        filmId: id,
-      }),
+     
     });
     await fetchComments();
   }
@@ -48,7 +46,7 @@ function AdminCommentsDetail({ onFetchCommentsLength }) {
                 <td>{item.userId.nickName} </td>
                 <td>{item?.createdAt}</td>
                 <td>
-                  <button onClick={() => handleDelete()}>Delete</button>
+                  <button onClick={() => handleDelete(item._id)}>Delete</button>
                 </td>
               </tr>
             ))}

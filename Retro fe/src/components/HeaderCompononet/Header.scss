@@ -38,7 +38,7 @@
             }
           }
           .desc {
-            p{
+            p {
               width: 135%;
             }
             font-size: 20px;
@@ -51,7 +51,7 @@
         .image {
           margin-top: 20px;
           max-width: 1450px;
-min-height: 800px;
+          min-height: 800px;
 
           img {
             width: 125%;
@@ -64,7 +64,7 @@ min-height: 800px;
   }
 }
 
-@media (max-width: 575.98px) { 
+@media (max-width: 575.98px) {
   .header {
     &_container {
       max-width: 80%;
@@ -108,26 +108,34 @@ min-height: 800px;
               }
             }
             .desc {
-              p{
+              p {
                 width: 139%;
               }
               font-size: 16px;
               line-height: 28px;
               margin: 0px 0 0 0px;
-  
+
               letter-spacing: 1px;
             }
           }
           .image {
-            margin-top: 10px;
+            margin-top: 20px;
+            max-width: 1450px;
+            min-height: 300px;
+
+            img {
+              width: 125%;
+              height: 100%;
+              object-fit: cover;
+            }
           }
         }
       }
     }
   }
- }
+}
 
-@media (min-width: 576px) and (max-width: 767.98px) { 
+@media (min-width: 576px) and (max-width: 767.98px) {
   .header {
     &_container {
       max-width: 80%;
@@ -159,30 +167,38 @@ min-height: 800px;
               font-size: 80px;
               width: 45%;
               h5 {
-                line-height: 80px;
+                line-height: 120px;
               }
             }
             .desc {
-              p{
-                width: 145%;
+              p {
+                width: 155%;
               }
-              font-size: 17px;
-              line-height: 30px;
+              font-size: 13px;
+              line-height: 20px;
               margin: 20px 0 0 0px;
-  
+
               letter-spacing: 2px;
             }
           }
           .image {
-            margin-top: 10px;
+            margin-top: 20px;
+            max-width: 1450px;
+            min-height: 300px;
+
+            img {
+              width: 125%;
+              height: 100%;
+              object-fit: cover;
+            }
           }
         }
       }
     }
   }
- }
+}
 
-@media (min-width: 768px) and (max-width: 991.98px) { 
+@media (min-width: 768px) and (max-width: 991.98px) {
   .header {
     &_container {
       max-width: 80%;
@@ -211,33 +227,41 @@ min-height: 800px;
             max-width: 100%;
             gap: 60px;
             .title {
-              font-size: 80px;
+              font-size: 100px;
               width: 45%;
               h5 {
-                line-height: 80px;
+                line-height: 120px;
               }
             }
             .desc {
-              p{
+              p {
                 width: 145%;
               }
-              font-size: 17px;
-              line-height: 30px;
+              font-size: 15px;
+              line-height: 20px;
               margin: 20px 0 0 0px;
-  
+
               letter-spacing: 2px;
             }
           }
           .image {
-            margin-top: 10px;
+            margin-top: 20px;
+            max-width: 1450px;
+            min-height: 400px;
+
+            img {
+              width: 125%;
+              height: 100%;
+              object-fit: cover;
+            }
           }
         }
       }
     }
   }
- }
+}
 
-@media (min-width: 992px) and (max-width: 1199.98px) { 
+@media (min-width: 992px) and (max-width: 1199.98px) {
   .header {
     &_container {
       max-width: 80%;
@@ -273,21 +297,29 @@ min-height: 800px;
               }
             }
             .desc {
-              p{
+              p {
                 width: 145%;
               }
               font-size: 18px;
               line-height: 35px;
               margin: 20px 0 0 20px;
-  
+
               letter-spacing: 2px;
             }
           }
           .image {
-            margin-top: 10px;
+            margin-top: 20px;
+            max-width: 1450px;
+            min-height: 400px;
+
+            img {
+              width: 125%;
+              height: 100%;
+              object-fit: cover;
+            }
           }
         }
       }
     }
   }
- }
+}

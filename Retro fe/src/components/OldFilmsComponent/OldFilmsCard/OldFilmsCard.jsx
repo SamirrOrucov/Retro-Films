@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import "./OldFilmsCards.scss";
 import { WatchlistContext } from "../../../context/WatchlistContext";
 import { Link } from "react-router-dom";
-import { number } from "yup";
 function OldFilmsCard({ year, item, image, title, desc, duration }) {
   const { addToWatchlist, watchlist, removeFromWatchlist } =
     useContext(WatchlistContext);
@@ -29,8 +28,8 @@ function OldFilmsCard({ year, item, image, title, desc, duration }) {
       console.log(data);
       if (data && data.length > 0) {
         const roundedRating = data[0].averageRating
-      const roundedRate=  parseFloat(roundedRating.toFixed(1));
-        setRating(roundedRate); 
+      const roundedRate=  parseFloat(roundedRating?.toFixed(1));
+        setRating(roundedRate ); 
       }
     } catch (error) {
       console.error("Error fetching rating:", error);
@@ -47,7 +46,7 @@ function OldFilmsCard({ year, item, image, title, desc, duration }) {
           <div className="rate">
             <p>
               <i class="fa-sharp fa-solid fa-star"></i>
-              {typeof rating ==="number"?rating:"0"}
+              {typeof (rating) ==="number"?rating:"0"}
             </p>
           </div>
           <div className="catgory">
