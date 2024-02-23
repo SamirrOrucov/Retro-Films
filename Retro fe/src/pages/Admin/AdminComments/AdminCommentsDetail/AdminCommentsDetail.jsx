@@ -5,7 +5,6 @@ import "../AdminComments.scss";
 function AdminCommentsDetail({ onFetchCommentsLength }) {
   const { id } = useParams();
   const [filmComments, setfilmComments] = useState([]);
-  console.log(filmComments);
   async function fetchComments(e) {
     try {
       const response = await fetch(

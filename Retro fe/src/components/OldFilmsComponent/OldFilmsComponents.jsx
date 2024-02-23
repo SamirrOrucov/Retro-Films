@@ -7,7 +7,8 @@ function OldFilmsComponents() {
   const [currentPage, setCurrentPage] = useState(1);
   const [filmsPerPage] = useState(6);
   const [category, setCategory] = useState("All");
-
+  const [sortBy, setSortBy] = useState(null);
+  const [sortOrder, setSortOrder] = useState("asc");
   async function fetchData() {
     const response = await fetch("http://localhost:3003/film");
     const data = await response.json();
@@ -18,22 +19,44 @@ function OldFilmsComponents() {
     fetchData();
   }, []);
 
+
+
+
   const indexOfLastFilm = currentPage * filmsPerPage;
   const indexOfFirstFilm = indexOfLastFilm - filmsPerPage;
-  const currentFilms = dbData.slice(indexOfFirstFilm, indexOfLastFilm);
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const handleCategoryClick = (category) => {
-    setCategory(category);
-    setCurrentPage(1); 
-  };
 
   const filteredProducts =
     category === "All"
       ? dbData
       : dbData.filter((item) => item.category === category);
 
+  const sortedProducts = sortBy
+    ? filteredProducts.sort((a, b) => {
+        if (sortOrder === "asc") {
+          return a[sortBy] > b[sortBy] ? 1 : -1;
+        } else {
+          return a[sortBy] < b[sortBy] ? 1 : -1;
+        }
+      })
+    : filteredProducts;
+
+  const currentFilms = sortedProducts.slice(indexOfFirstFilm, indexOfLastFilm);
   const totalPages = Math.ceil(filteredProducts.length / filmsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const handleCategoryClick = (category) => {
+    setCategory(category);
+    setCurrentPage(1);
+  };
+
+  const handleSortChange = (sort) => {
+    if (sortBy === sort) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(sort);
+      setSortOrder("asc");
+    }
+  };
 
   return (
     <div className="oldFilms">
@@ -47,12 +70,14 @@ function OldFilmsComponents() {
             <div className="types">
               <button onClick={() => handleCategoryClick("All")}>ALL</button>
               <button onClick={() => handleCategoryClick("dram")}>DRAMA</button>
-              <button onClick={() => handleCategoryClick("komediya")}>COMEDY</button>
+              <button onClick={() => handleCategoryClick("komediya")}>
+                COMEDY
+              </button>
               <button onClick={() => handleCategoryClick("war")}>WAR</button>
             </div>
           </div>
           <div className="cards">
-            {filteredProducts.map((item, index) => (
+            {currentFilms.map((item, index) => (
               <OldFilmsCard
                 key={index}
                 year={item.date}
